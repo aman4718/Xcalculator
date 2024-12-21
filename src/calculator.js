@@ -72,9 +72,6 @@ const Calculator = () => {
                 ))
                 }
             </div>
-            <button onClick={handleClear} style={styles.button}>
-              C
-            </button>
         </div>
     )
 }
