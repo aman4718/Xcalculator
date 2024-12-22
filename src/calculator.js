@@ -75,6 +75,16 @@ const Calculator = () => {
               type="text"
               value={input}
               readOnly
+              style={{
+                backgroundColor: "#000",
+                color: "#fff",
+                width: "100%",
+                fontSize: "1.5rem",
+                textAlign: "right",
+                border: "none",
+                outline: "none",
+                padding: "10px",
+              }}
             />
             <input
               type="text"
