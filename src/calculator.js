@@ -49,14 +49,14 @@ const Calculator = () => {
       }
       const calclulate = () => {
         try {
-          if(input === '0/0'){
+          if(input === '0/0' || input ==='0/00'){
             setResult("NaN");
+          }else if(!input){
+              setResult("Error");
           }else{
             const safeEval = new Function("return " + input);
             setResult(safeEval(input));
-            if(!input){
-              setResult("Error");
-            }
+            
           }
         } catch (error) {
           setResult("Error");
@@ -95,7 +95,7 @@ const Calculator = () => {
           </div>
             <div style={styles.buttons}>
                 {arr.map((btn) => (
-                    <button key={btn} onClick={() => btn === "=" ? calclulate() : btn === "C" ? handleClear() : handleClick(btn)}>{btn}</button>
+                    <button key={btn} onClick={() => btn === "=" ? calclulate() : btn === "C" ? handleClear() : handleClick(btn)}disabled={btn === "=" && !input}>{btn}</button>
 
                 ))
                 }
