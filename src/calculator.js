@@ -2,10 +2,10 @@ import { useState } from "react";
 
 const Calculator = () => {
     const arr = [
-        "7","8","9","/",
-        "4","5","6","*",
-        "1","2","3","-",
-        "0",".","=","+"
+        "7","8","9","+",
+        "4","5","6","-",
+        "1","2","3","*",
+        "C","0","=","/"
     ];
     const styles = {
         container: {
@@ -49,7 +49,15 @@ const Calculator = () => {
       }
       const calclulate = () => {
         try {
-          setResult(eval(input));
+          if(input === '0/0'){
+            setResult("NaN");
+          }else{
+            const safeEval = new Function("return " + input);
+            setResult(safeEval(input));
+            if(!input){
+              setResult("Error");
+            }
+          }
         } catch (error) {
           setResult("Error");
         }
@@ -67,7 +75,7 @@ const Calculator = () => {
           </div>
             <div style={styles.buttons}>
                 {arr.map((btn) => (
-                    <button style={styles.buttons} key={btn} onClick={() => btn === "=" ? calclulate() : handleClick(btn)}>{btn}</button>
+                    <button key={btn} onClick={() => btn === "=" ? calclulate() : btn === "C" ? handleClear() : handleClick(btn)}>{btn}</button>
 
                 ))
                 }
