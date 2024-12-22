@@ -70,8 +70,28 @@ const Calculator = () => {
     return(
         <div style={styles.container}>
           <div style={styles.display}>
-            <div>{input || "0"}</div>
-            <div>{result ? `= ${result}` : ""}</div>
+          <div style={styles.display}>
+            <input
+              type="text"
+              value={input || "0"}
+              readOnly
+            />
+            <input
+              type="text"
+              value={result ? `= ${result}` : ""}
+              readOnly
+              style={{
+                backgroundColor: "#000",
+                color: "#fff",
+                width: "100%",
+                fontSize: "1.5rem",
+                textAlign: "right",
+                border: "none",
+                outline: "none",
+                padding: "10px",
+              }}
+            />
+          </div>
           </div>
             <div style={styles.buttons}>
                 {arr.map((btn) => (
