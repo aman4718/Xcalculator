@@ -73,7 +73,7 @@ const Calculator = () => {
           <div style={styles.display}>
             <input
               type="text"
-              value={input || "0"}
+              value={input}
               readOnly
             />
             <input
