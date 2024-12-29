@@ -49,14 +49,17 @@ const Calculator = () => {
       }
       const calclulate = () => {
         try {
-          if(input === '0/0' || input ==='0/00'){
+          // Handle division by zero and invalid inputs
+          if (input.includes("/0")) {
+            setResult("Infinity");
+          } else if (input === "0/0") {
             setResult("NaN");
-          }else if(!input){
-              setResult("Error");
-          }else{
-            const safeEval = new Function("return " + input);
-            setResult(safeEval(input));
-            
+          } else if (!/^\d+(\.\d+)?([+\-*/]\d+(\.\d+)?)*$/.test(input)) {
+            // Regex to ensure input ends with a valid number, not an operator
+            setResult("Error");
+          } else {
+            const evaluatedResult = eval(input); // Use eval safely
+            setResult(evaluatedResult.toString());
           }
         } catch (error) {
           setResult("Error");
